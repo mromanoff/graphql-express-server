@@ -1,4 +1,4 @@
-# graphql-express-server
+graphql-express-server
 ========================
 
 Prove of Concept GraphQL/Express server 
@@ -46,7 +46,7 @@ get vehicles:
 get vehicle: 
 ```$xslt
 {
-  vehicle(id: "acura_ilx_2018") {
+  vehicle(id: "jeep_wrangler_2018") {
     id
     vehicleDetails {
       id

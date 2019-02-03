@@ -5,9 +5,19 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLSchema,
+  GraphQLID,
   GraphQLList,
   GraphQLNonNull
 } = require("graphql");
+
+const ReviewType = new GraphQLObjectType({
+  name: "ReviewType",
+  fields: () => ({
+    label: { type: GraphQLString },
+    value: { type: GraphQLString },
+    percent: { type: GraphQLInt }
+  })
+});
 
 const DetailsType = new GraphQLObjectType({
   name: "DetailsType",
@@ -21,7 +31,7 @@ const DetailsType = new GraphQLObjectType({
 });
 
 const TrimType = new GraphQLObjectType({
-  name: "VehicleTrimType",
+  name: "TrimType",
   fields: () => ({
     id: { type: GraphQLString },
     make: { type: GraphQLString },
@@ -32,12 +42,23 @@ const TrimType = new GraphQLObjectType({
   })
 });
 
+const ExpertReviewsType = new GraphQLObjectType({
+  name: "ExpertReviewsType",
+  fields: () => ({
+    id: { type: GraphQLID },
+    author: { type: GraphQLString },
+    date: { type: GraphQLString },
+    reviews: { type: new GraphQLList(ReviewType) }
+  })
+});
+
 const VehicleType = new GraphQLObjectType({
   name: "Vehicle",
   fields: () => ({
     id: { type: GraphQLString },
     vehicleDetails: { type: DetailsType },
-    trims: { type: new GraphQLList(TrimType)}
+    trims: { type: new GraphQLList(TrimType) },
+    expertReviews: { type: ExpertReviewsType }
   })
 });
 
