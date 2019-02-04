@@ -22,6 +22,24 @@ const ReviewType = new GraphQLObjectType({
   })
 });
 
+const ImageType = new GraphQLObjectType({
+  name: "ImageType",
+  description: '...',
+  fields: () => ({
+    sm: { type: GraphQLString },
+    md: { type: GraphQLString },
+  })
+});
+
+const HeroImageType = new GraphQLObjectType({
+  name: "HeroImageType",
+  description: '...',
+  fields: () => ({
+    label: { type: GraphQLString },
+    hero: { type: ImageType },
+  })
+});
+
 const DetailsType = new GraphQLObjectType({
   name: "DetailsType",
   description: '...',
@@ -30,7 +48,8 @@ const DetailsType = new GraphQLObjectType({
     make: { type: GraphQLString },
     model: { type: GraphQLString },
     year: { type: GraphQLInt },
-    zipCode: { type: GraphQLString }
+    zipCode: { type: GraphQLString },
+    image: { type: HeroImageType}
   })
 });
 
@@ -65,7 +84,7 @@ const VehicleType = new GraphQLObjectType({
     id: { type: GraphQLString },
     vehicleDetails: { type: DetailsType },
     trims: { type: new GraphQLList(TrimType) },
-    expertReviews: { type: ExpertReviewsType }
+    expertReviews: { type: ExpertReviewsType },
   })
 });
 
