@@ -10,8 +10,11 @@ const {
   GraphQLNonNull
 } = require("graphql");
 
+const BASE_URL = 'http://localhost:4000';
+
 const ReviewType = new GraphQLObjectType({
   name: "ReviewType",
+  description: '...',
   fields: () => ({
     label: { type: GraphQLString },
     value: { type: GraphQLString },
@@ -21,6 +24,7 @@ const ReviewType = new GraphQLObjectType({
 
 const DetailsType = new GraphQLObjectType({
   name: "DetailsType",
+  description: '...',
   fields: () => ({
     id: { type: GraphQLString },
     make: { type: GraphQLString },
@@ -32,6 +36,7 @@ const DetailsType = new GraphQLObjectType({
 
 const TrimType = new GraphQLObjectType({
   name: "TrimType",
+  description: '...',
   fields: () => ({
     id: { type: GraphQLString },
     make: { type: GraphQLString },
@@ -44,6 +49,7 @@ const TrimType = new GraphQLObjectType({
 
 const ExpertReviewsType = new GraphQLObjectType({
   name: "ExpertReviewsType",
+  description: '...',
   fields: () => ({
     id: { type: GraphQLID },
     author: { type: GraphQLString },
@@ -54,6 +60,7 @@ const ExpertReviewsType = new GraphQLObjectType({
 
 const VehicleType = new GraphQLObjectType({
   name: "Vehicle",
+  description: '...',
   fields: () => ({
     id: { type: GraphQLString },
     vehicleDetails: { type: DetailsType },
@@ -65,6 +72,7 @@ const VehicleType = new GraphQLObjectType({
 // root Query
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
+  description: '...',
   fields: {
     vehicle: {
       type: VehicleType,
@@ -73,7 +81,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         return axios
-          .get(`http://localhost:3000/vehicles/${args.id}`)
+          .get(`${BASE_URL}/vehicles/${args.id}`)
           .then(res => res.data);
       }
     },
@@ -81,7 +89,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(VehicleType),
       resolve() {
         return axios
-          .get(`http://localhost:3000/vehicles`)
+          .get(`${BASE_URL}/vehicles`)
           .then(res => res.data);
       }
     }

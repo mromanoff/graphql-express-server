@@ -9,16 +9,12 @@ Prove of Concept GraphQL/Express server
 npm install
 ```
 
-## Simple Setup
+## Start Server
 
-start json-server seed data
-```sh
-npm run json:server
-```
-
+start 
 start GraphQL server
 ```sh
-npm run dev:server
+npm run dev
 ```
 
 open browser on http://localhost:4000/graphq
